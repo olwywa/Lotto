@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.LinkedHashSet;
+
 public class User {
 
     static int n;               // podaje ile losowan
@@ -8,22 +10,29 @@ public class User {
     public static int[] userValues(int min, int max) {
 
         GettingClass gettingClass = new GettingClass();
+        LinkedHashSet<Integer> losowaniaUsera_ = new LinkedHashSet<>();
 
-        System.out.println("Podaj 6 unikatowych liczb z przedzialu od 1 do 49.");
-        int licznik = 1;
+        System.out.println("Podaj 6 unikatowych liczb z przedzialu od 1 do 49:");
 
-        for (int i = 0; i < losowaniaUsera.length; i++)  {
-            System.out.println("Podaj " + licznik + ". liczbę: ");
+        while(true) {
             n = gettingClass.getInt();
             if (n < min || n > max) {
                 System.out.println("Podaj liczbę z zakresu od 1 do 49.");
-                i--;
                 continue;
             } else if(n >= min && n <= max) {
-                losowaniaUsera[i] = n;
-                licznik++;
+                losowaniaUsera_.add(n);
+            }
+            if (losowaniaUsera_.size() == 6) {
+                break;
             }
         }
+
+        int i = 0;
+        for(Integer number: losowaniaUsera_) {
+            losowaniaUsera[i] = number;
+            i++;
+        }
+
         return losowaniaUsera;
     }
 

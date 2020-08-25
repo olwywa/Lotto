@@ -1,7 +1,5 @@
 package lotto;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Lottery {
 
@@ -9,11 +7,17 @@ public class Lottery {
 
     public static int[] lottery(int liczba) {     // generowanie liczb pseudolosowych przez komputer
 
-        randomoweLosowania = new int[liczba];
+        Set<Integer> randomoweLosowania_ = new HashSet<>();
         Random generator = new Random();
+        while(randomoweLosowania_.size() < liczba) {
+            randomoweLosowania_.add(generator.nextInt(48) + 1);
+        }
+        randomoweLosowania = new int[liczba];
 
-        for(int j = 0; j < randomoweLosowania.length; j++) {
-            randomoweLosowania[j] = generator.nextInt(48) + 1;
+        int i=0;
+        for(Integer number: randomoweLosowania_) {
+            randomoweLosowania[i] = number;
+            i++;
         }
 
         return randomoweLosowania;
